@@ -1,0 +1,316 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C638347-4373-4BFB-9BA4-F0E5842551EE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ComputerMonitor</RootNamespace>
+    <AssemblyName>ComputerMonitor</AssemblyName>
+    <ApplicationIcon>AppMain.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Afg3022, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Afg3022\Afg3022\bin\Debug\Afg3022.dll</HintPath>
+    </Reference>
+    <Reference Include="DevAge.Core, Version=4.11.3304.33528, Culture=neutral, PublicKeyToken=faad465d84242dbf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assembly\DevAge.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevAge.Windows.Forms, Version=4.11.3304.33529, Culture=neutral, PublicKeyToken=faad465d84242dbf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assembly\DevAge.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ComputerMonitor\ComputerMonitor\bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceGrid, Version=4.20.3304.35521, Culture=neutral, PublicKeyToken=df6f5e538749e85d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assembly\SourceGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceGrid.Extensions, Version=4.20.3304.35522, Culture=neutral, PublicKeyToken=df6f5e538749e85d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assembly\SourceGrid.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="wdapi_dotnet921, Version=9.2.1.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assembly\wdapi_dotnet921.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.15095, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ButtonExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CAN\CANCardLib.cs" />
+    <Compile Include="CAN\CANDevice.cs" />
+    <Compile Include="FormAutoCalc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAutoCalc.Designer.cs">
+      <DependentUpon>FormAutoCalc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBoardFuncSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBoardFuncSet.Designer.cs">
+      <DependentUpon>FormBoardFuncSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCANCommand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCANCommand.Designer.cs">
+      <DependentUpon>FormCANCommand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCANData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCANData.Designer.cs">
+      <DependentUpon>FormCANData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCANReceiveData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCANReceiveData.Designer.cs">
+      <DependentUpon>FormCANReceiveData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFuncBoardData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFuncBoardData.Designer.cs">
+      <DependentUpon>FormFuncBoardData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFuncBoardParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFuncBoardParam.Designer.cs">
+      <DependentUpon>FormFuncBoardParam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFuncBoardSimulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFuncBoardSimulator.Designer.cs">
+      <DependentUpon>FormFuncBoardSimulator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReceiveData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReceiveData.Designer.cs">
+      <DependentUpon>FormReceiveData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSc.Designer.cs">
+      <DependentUpon>FormSc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSendData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSendData.Designer.cs">
+      <DependentUpon>FormSendData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAutoTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAutoTest.Designer.cs">
+      <DependentUpon>FormAutoTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnalogDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAnalogDisplay.Designer.cs">
+      <DependentUpon>FrmAnalogDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FromMeter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FromMeter.Designer.cs">
+      <DependentUpon>FromMeter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\CRC16.cs" />
+    <Compile Include="Helper\GlobalVar.cs" />
+    <Compile Include="Helper\GridView.cs" />
+    <Compile Include="Helper\IniFile.cs" />
+    <Compile Include="Helper\Tool.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAutoCalc.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormAutoCalc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBoardFuncSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormBoardFuncSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCANCommand.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormCANCommand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCANData.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormCANData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCANReceiveData.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormCANReceiveData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFuncBoardData.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormFuncBoardData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFuncBoardParam.resx">
+      <DependentUpon>FormFuncBoardParam.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFuncBoardSimulator.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormFuncBoardSimulator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReceiveData.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormReceiveData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSc.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormSc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSendData.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormSendData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAutoTest.resx">
+      <DependentUpon>FormAutoTest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnalogDisplay.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmAnalogDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FromMeter.resx">
+      <DependentUpon>FromMeter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSignalCurrentCalc.resx">
+      <DependentUpon>FormSignalCurrentCalc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Protocol\CANFrameManager.cs" />
+    <Compile Include="Protocol\FrameManager.cs" />
+    <Compile Include="Protocol\FrameReceive.cs" />
+    <Compile Include="Protocol\FrameTransmit.cs" />
+    <Compile Include="SerialManager\CommPort.cs" />
+    <Compile Include="Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
+    </Compile>
+    <Compile Include="FormSignalCurrentCalc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSignalCurrentCalc.Designer.cs">
+      <DependentUpon>FormSignalCurrentCalc.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Port.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Close.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Clear.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppMain.ico" />
+    <None Include="app.config" />
+    <None Include="Image\Check.ico" />
+    <None Include="Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JcxhCodeSend\JcxhCodeSend.csproj">
+      <Project>{E7DC69D7-CEE2-4BC4-AE48-EF92F77382B7}</Project>
+      <Name>JcxhCodeSend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Meter34401\Meter34401.csproj">
+      <Project>{3F0F8F8D-38D8-4893-8520-602765C7E64D}</Project>
+      <Name>Meter34401</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
