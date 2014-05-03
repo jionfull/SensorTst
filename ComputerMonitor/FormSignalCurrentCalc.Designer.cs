@@ -108,21 +108,22 @@ namespace ComputerMonitor
             // 
             // txtChVal
             // 
-            this.txtChVal.Location = new System.Drawing.Point(591, 430);
+            this.txtChVal.Location = new System.Drawing.Point(170, 215);
             this.txtChVal.Name = "txtChVal";
             this.txtChVal.Size = new System.Drawing.Size(183, 21);
             this.txtChVal.TabIndex = 26;
-            this.txtChVal.Text = "3000";
+            this.txtChVal.Text = "300";
             this.txtChVal.TextChanged += new System.EventHandler(this.txtChVal_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(589, 405);
+            this.label3.Location = new System.Drawing.Point(36, 218);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(185, 12);
+            this.label3.Size = new System.Drawing.Size(101, 12);
             this.label3.TabIndex = 27;
-            this.label3.Text = "第一通道满量程值（测试时用）：";
+            this.label3.Text = "当前实际电流值：";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // buttonExt4
             // 
@@ -200,7 +201,7 @@ namespace ComputerMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 750);
+            this.ClientSize = new System.Drawing.Size(910, 746);
             this.Controls.Add(this.buttonExt5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtChVal);

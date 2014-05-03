@@ -192,19 +192,18 @@ namespace ComputerMonitor
                 ShowText(this.btnStartCalc, "自动校准");
                 return;
             }
-            for (int i = 0; i < coefValues.Length; i++)
+            for (int i = 0; i < coefValues.Length/2; i++)
             {
-                if (coefValues[i] < 0 || coefValues[i] == 0x0)
+                if (coefValues[i*2+1] < 0 || coefValues[i*2+1] == 0x0)
                 {
                     coefValues[i] = 1024;
                 }
             }
             coefValues.CopyTo(CoeffValues, 0);
             InvalidateCtrl(this.gridValueView);
-            for (int i = 0; i < 4; i++)
-            {
-                DoCalcStep(i, CoeffValues);
-            }
+            
+            DoCalcStep(CoeffValues);
+           
             if (!Funs485.WriteCoeff(cardAddr, CoeffValues))
             {
                 ShowText(this.txtMessage, "系数写入失败");
@@ -258,7 +257,7 @@ namespace ComputerMonitor
             }
         }
 
-        private bool DoCalcStep(int step, Int16[] scaleList)
+        private bool DoCalcStep(Int16[] scaleList)
         {
             Int16[] chValues = new Int16[100];
             Int16[] refValues = new Int16[100];
@@ -276,7 +275,7 @@ namespace ComputerMonitor
                 }
                 if (!Funs485.RdAllCh(refCardNo, out refValues))
                 {
-                    AppendText(this.txtMessage, String.Format("读取板{0}模拟量数据失败", cardAddr));
+                   // AppendText(this.txtMessage, String.Format("读取板{0}模拟量数据失败", cardAddr));
                     return false;
                 }
                 if (chValues.Length != refValues.Length)
@@ -297,7 +296,7 @@ namespace ComputerMonitor
                 coef = coef * refVal;
                 coef = coef / realVal;
                 // coef *= coef * refVal /realVal;
-                scaleList[i * 4 + step] = (Int16)Math.Round(coef);
+                scaleList[i * 2 + 1] = (Int16)Math.Round(coef);
             }
             scaleList.CopyTo(CoeffValues, 0);
             InvalidateCtrl(this.gridValueView);
@@ -324,6 +323,7 @@ namespace ComputerMonitor
         }
         String cardId;
         String testerName;
+        float realVal=300;
         private void btnStartCalc_Click(object sender, EventArgs e)
         {
             cardAddr = (byte)int.Parse(FormMain.Instance.txtBoardAddr.Text);
@@ -418,11 +418,15 @@ namespace ComputerMonitor
             coefValues.CopyTo(CoeffValues, 0);
             InvalidateCtrl(this.gridValueView);
             CalcFullValues();
-         
-                DoFreqTstStep(0, CoeffValues);
- 
-          
-                DoAmpliTstStep(0, CoeffValues);
+
+
+
+            for (int i = 0; i < 4;i++ )
+            {
+                DoAmpliTstStep(i, CoeffValues);
+            }
+
+               
           
             String ver;
             Funs485.RdVerMessage(cardAddr, out ver);
@@ -455,7 +459,7 @@ namespace ComputerMonitor
             try
             {
                 sendFullValue = (float)firstChFullVal / refValues[0];
-                freqFullValues[freqStep] = sendFullValue;
+                freqFullValues[0] = sendFullValue;
             }
             catch
             {
@@ -608,10 +612,9 @@ namespace ComputerMonitor
         {
             if (fullValueChanged == false) return;
             fullValueChanged = false;
-            for (int i = 0; i < 4; i++)
-            {
-                GetFullSendAmpli(i);
-            }
+            
+             GetFullSendAmpli(0);
+            
         }
         private void txtChVal_TextChanged(object sender, EventArgs e)
         {
@@ -619,6 +622,7 @@ namespace ComputerMonitor
             if (int.TryParse(txtChVal.Text, out val))
             {
                 firstChFullVal = val;
+                realVal = val;
             }
         }
 
@@ -643,6 +647,11 @@ namespace ComputerMonitor
             {
                 ShowText(this.txtMessage, "系数写入失败");
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
