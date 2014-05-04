@@ -199,6 +199,7 @@ namespace ComputerMonitor
                     coefValues[i] = 1024;
                 }
             }
+            AppendText(this.txtMessage, String.Format("读取板系数完成\r\n"));
             coefValues.CopyTo(CoeffValues, 0);
             InvalidateCtrl(this.gridValueView);
             
@@ -209,6 +210,7 @@ namespace ComputerMonitor
                 ShowText(this.txtMessage, "系数写入失败");
             }
             WriteFactoryMessage(cardAddr);
+            AppendText(this.txtMessage, String.Format("校准完成\r\n"));
             ShowText(this.btnStartCalc, "自动校准");
         }
 
@@ -264,35 +266,44 @@ namespace ComputerMonitor
     
 
             DateTime startTime = DateTime.Now;
-
+            AppendText(this.txtMessage, String.Format("开始读取模拟量,按任意键退出\r\n"));
             waitKey.Reset();
             while ((DateTime.Now - startTime).TotalSeconds < 10)
             {
                 if (!Funs485.RdAllCh(cardAddr, out chValues))
                 {
-                    AppendText(this.txtMessage, String.Format("读取板{0}模拟量数据失败", cardAddr));
+                    AppendText(this.txtMessage, String.Format("读取板{0}模拟量数据失败\r\n", cardAddr));
                     return false;
                 }
                 if (!Funs485.RdAllCh(refCardNo, out refValues))
                 {
+                    refValues = new Int16[chValues.Length];
+                    for (int i = 0; i < refValues.Length; i++)
+                    {
+                        refValues[i] = (Int16)Math.Round(realVal);
+                    }
                    // AppendText(this.txtMessage, String.Format("读取板{0}模拟量数据失败", cardAddr));
-                    return false;
+                  //  return false;
                 }
                 if (chValues.Length != refValues.Length)
                 {
                     AppendText(this.txtMessage, String.Format("基准板与待校准板不一致"));
                     return false;
                 }
-                chValues.CopyTo(WaitCalcValues, 0);
+                for (int i = 0; i < chValues.Length; i++)
+                {
+                    chValues[i] = (Int16)(chValues[i] & 0x7fff);
+                }
+                    chValues.CopyTo(WaitCalcValues, 0);
                 refValues.CopyTo(RefValues, 0);
                 InvalidateCtrl(this.gridValueView);
                 if (waitKey.WaitOne(0,true)) break;
             }
             for (int i = 0; i < chValues.Length ; i++)
             {
-                double coef = scaleList[i *2 ] * 1.0;
+                double coef = scaleList[i *2 +1] * 1.0;
                 float refVal = refValues[i];
-                float realVal = chValues[i * 3];
+                float realVal = chValues[i ];
                 coef = coef * refVal;
                 coef = coef / realVal;
                 // coef *= coef * refVal /realVal;

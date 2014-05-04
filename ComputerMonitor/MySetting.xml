@@ -1,0 +1,14 @@
+<Config>
+  <Board>
+    <BoardAddr>16</BoardAddr>
+    <BoardStyle>2</BoardStyle>
+  </Board>
+  <Ports>
+    <Work>
+      <Port>2</Port>
+    </Work>
+    <Meter>
+      <Port>-1</Port>
+    </Meter>
+  </Ports>
+</Config>

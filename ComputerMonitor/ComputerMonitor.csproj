@@ -48,7 +48,7 @@
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ComputerMonitor\ComputerMonitor\bin\Debug\log4net.dll</HintPath>
+      <HintPath>..\log4net.dll</HintPath>
     </Reference>
     <Reference Include="SourceGrid, Version=4.20.3304.35521, Culture=neutral, PublicKeyToken=df6f5e538749e85d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -288,6 +288,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppMain.ico" />
+    <Content Include="MySetting.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="app.config" />
     <None Include="Image\Check.ico" />
     <None Include="Settings1.settings">

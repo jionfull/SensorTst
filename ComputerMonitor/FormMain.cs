@@ -55,16 +55,7 @@ namespace ComputerMonitor
         }
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            if (formFuncBoardParam == null || formFuncBoardParam.IsDisposed)
-            {
-                formFuncBoardParam = new FormFuncBoardParam();
-                
-                formFuncBoardParam.Show(this.dpMain);
-            }
-            else
-            {
-                formFuncBoardParam.Activate();
-            }
+        
             
 
         }
@@ -96,13 +87,13 @@ namespace ComputerMonitor
             formDataSend = new FormSendData();
             frmAnalogDisplay = new FrmAnalogDisplay();
             formBoardFuncSet = new FormBoardFuncSet();
-            formFuncBoardParam = new FormFuncBoardParam();
+       
             frmMeter = new FromMeter();
             formDataReceive.Show(this.dpMain);
             formDataSend.Show(formDataReceive.Pane,DockAlignment.Right,0.5);
             frmAnalogDisplay.Show(dpMain);
             
-            formFuncBoardParam.Show(dpMain);
+       
             formBoardFuncSet.Show(dpMain);
          // frmMeter.Show(dpMain);
             Protocol.FrameReceive.Start();
